@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cp8eox2w8cgwj"]
+
+[ext_resource type="Script" path="res://Objects/Physics Capsule.gd" id="1_nsw4k"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pnxw5"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_f5jbm"]
+
+[node name="Physics Capsule" type="RigidBody3D"]
+script = ExtResource("1_nsw4k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_pnxw5")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+mesh = SubResource("CapsuleMesh_f5jbm")

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpnyietav6u1a"]
+
+[ext_resource type="Script" path="res://Objects/Physics Sphere.gd" id="1_jlaun"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_63sq8"]
+
+[node name="Physics Sphere" type="RigidBody3D"]
+script = ExtResource("1_jlaun")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_63sq8")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+rings = 100

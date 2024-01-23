@@ -1,0 +1,105 @@
+[gd_scene load_steps=8 format=3 uid="uid://cqwsago5a2gei"]
+
+[ext_resource type="PackedScene" uid="uid://bgay1vhd5inoh" path="res://Player/Player.tscn" id="1_1lxbe"]
+[ext_resource type="Script" path="res://test_world.gd" id="1_l67ir"]
+[ext_resource type="PackedScene" uid="uid://bxeou0slgyvmj" path="res://NPC/NPC.tscn" id="3_dtfab"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3jor4"]
+sky_top_color = Color(0.352941, 0.54902, 0.686275, 1)
+sky_horizon_color = Color(0.580392, 0.588235, 0.607843, 1)
+sky_energy_multiplier = 2.0
+
+[sub_resource type="Sky" id="Sky_pbbol"]
+sky_material = SubResource("ProceduralSkyMaterial_3jor4")
+radiance_size = 4
+
+[sub_resource type="Environment" id="Environment_gtw3k"]
+background_mode = 2
+background_energy_multiplier = 2.0
+sky = SubResource("Sky_pbbol")
+ambient_light_color = Color(0.854902, 0.854902, 0.854902, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wveq1"]
+size = Vector3(25, 0.5, 25)
+
+[node name="TestWorld" type="Node3D"]
+script = ExtResource("1_l67ir")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gtw3k")
+
+[node name="Player" parent="." instance=ExtResource("1_1lxbe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.87168, 0)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="FPS" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = -172.0
+offset_right = -2.0
+offset_bottom = 26.0
+text = "FPS: 000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSync" type="CheckButton" parent="UI"]
+layout_mode = 0
+offset_left = -141.0
+offset_top = 32.0
+offset_right = -2.0
+offset_bottom = 63.0
+text = "VSync"
+alignment = 1
+
+[node name="FOV" type="HSlider" parent="UI"]
+layout_mode = 0
+offset_left = -141.0
+offset_top = 94.0
+offset_right = -1.0
+offset_bottom = 110.0
+min_value = 50.0
+max_value = 120.0
+value = 75.0
+
+[node name="Label" type="Label" parent="UI/FOV"]
+layout_mode = 0
+offset_top = -29.0
+offset_right = 140.0
+offset_bottom = -6.0
+text = "FOV: 75"
+horizontal_alignment = 1
+
+[node name="Crosshair" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Crosshair"]
+layout_mode = 0
+offset_right = 5.0
+offset_bottom = 5.0
+color = Color(0.501961, 0.501961, 0.501961, 1)
+
+[node name="NPC" parent="." instance=ExtResource("3_dtfab")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.69965, 1.64611, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_wveq1")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D"]
+size = Vector3(25, 0.5, 25)
+
+[connection signal="toggled" from="UI/VSync" to="." method="_on_v_sync_toggled"]

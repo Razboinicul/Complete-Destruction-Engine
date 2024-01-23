@@ -1,0 +1,123 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfl2yjcwpyitv"]
+
+[ext_resource type="Script" path="res://UI/Obj Interface.gd" id="1_wqlmy"]
+
+[node name="Object Interface" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wqlmy")
+
+[node name="Rot" type="Node2D" parent="."]
+position = Vector2(-300, -253)
+
+[node name="Rotation X" type="HSlider" parent="Rot"]
+offset_top = 76.0
+offset_right = 181.0
+offset_bottom = 92.0
+min_value = -360.0
+max_value = 360.0
+
+[node name="Label" type="Label" parent="Rot/Rotation X"]
+layout_mode = 0
+offset_top = -33.0
+offset_right = 177.0
+offset_bottom = -7.0
+text = "Rotation X: 000"
+horizontal_alignment = 1
+
+[node name="Rotation Y" type="HSlider" parent="Rot"]
+offset_left = 208.0
+offset_top = 76.0
+offset_right = 389.0
+offset_bottom = 92.0
+min_value = -360.0
+max_value = 360.0
+
+[node name="Label" type="Label" parent="Rot/Rotation Y"]
+layout_mode = 0
+offset_top = -33.0
+offset_right = 177.0
+offset_bottom = -7.0
+text = "Rotation Y"
+horizontal_alignment = 1
+
+[node name="Rotation Z" type="HSlider" parent="Rot"]
+offset_left = 420.0
+offset_top = 76.0
+offset_right = 601.0
+offset_bottom = 92.0
+min_value = -360.0
+max_value = 360.0
+
+[node name="Label" type="Label" parent="Rot/Rotation Z"]
+layout_mode = 0
+offset_top = -33.0
+offset_right = 177.0
+offset_bottom = -7.0
+text = "Rotation Z"
+horizontal_alignment = 1
+
+[node name="Scale" type="Node2D" parent="."]
+position = Vector2(-300, -132)
+
+[node name="Scale X" type="HSlider" parent="Scale"]
+offset_top = 76.0
+offset_right = 181.0
+offset_bottom = 92.0
+min_value = 1.0
+value = 1.0
+
+[node name="Label" type="Label" parent="Scale/Scale X"]
+layout_mode = 0
+offset_top = -33.0
+offset_right = 177.0
+offset_bottom = -7.0
+text = "Scale X"
+horizontal_alignment = 1
+
+[node name="Scale Y" type="HSlider" parent="Scale"]
+offset_left = 208.0
+offset_top = 76.0
+offset_right = 389.0
+offset_bottom = 92.0
+min_value = 1.0
+value = 1.0
+
+[node name="Label" type="Label" parent="Scale/Scale Y"]
+layout_mode = 0
+offset_top = -33.0
+offset_right = 177.0
+offset_bottom = -7.0
+text = "Scale Y"
+horizontal_alignment = 1
+
+[node name="Scale Z" type="HSlider" parent="Scale"]
+offset_left = 420.0
+offset_top = 76.0
+offset_right = 601.0
+offset_bottom = 92.0
+min_value = 1.0
+value = 1.0
+
+[node name="Label" type="Label" parent="Scale/Scale Z"]
+layout_mode = 0
+offset_top = -33.0
+offset_right = 177.0
+offset_bottom = -7.0
+text = "Scale Z"
+horizontal_alignment = 1
+
+[node name="Done" type="Button" parent="."]
+layout_mode = 0
+offset_left = -45.0
+offset_right = 45.0
+offset_bottom = 31.0
+text = "Done"
+
+[connection signal="pressed" from="Done" to="." method="_on_done_pressed"]
